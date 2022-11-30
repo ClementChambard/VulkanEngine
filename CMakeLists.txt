@@ -17,10 +17,13 @@ file(GLOB_RECURSE INCLUDES src/*.hpp src/*.h)
 # add the executable
 add_executable(VulkanTest ${SRCS} ${INCLUDES})
 
-# add the build directory as an include directory (for the config header)
+# add include directories
+set(STB_INCLUDE_DIR ${CMAKE_SOURCE_DIR}/lib/stb)
+set(TINYOBJ_INCLUDE_DIR ${CMAKE_SOURCE_DIR}/lib/tinyobjloader)
+
 target_include_directories(VulkanTest PUBLIC
-                            "${PROJECT_BINARY_DIR}"
-                            "lib/stb"
+                            ${STB_INCLUDE_DIR}
+                            ${TINYOBJ_INCLUDE_DIR}
                           )
 
 # link libraries
@@ -34,6 +37,8 @@ target_link_libraries(VulkanTest PUBLIC
                       -lXrandr
                       -lXi
                     )
+
+
 
 # Compile shaders
 find_package(Vulkan REQUIRED COMPONENTS glslc)
