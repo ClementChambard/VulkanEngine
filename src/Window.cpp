@@ -27,7 +27,8 @@ void Window::createWindowSurface(VkInstance instance, VkSurfaceKHR* surface)
     }
 }
 
-void Window::waitMinimized() {
+void Window::waitMinimized()
+{
     int w = 0, h = 0;
     glfwGetFramebufferSize(window, &w, &h);
     while (w == 0 || h == 0) {
@@ -36,7 +37,8 @@ void Window::waitMinimized() {
     }
 }
 
-void Window::framebufferResizeCallback(GLFWwindow* window, int width, int height) {
+void Window::framebufferResizeCallback(GLFWwindow* window, int width, int height)
+{
     auto Win = reinterpret_cast<Window*>(glfwGetWindowUserPointer(window));
     Win->resized = true;
 }

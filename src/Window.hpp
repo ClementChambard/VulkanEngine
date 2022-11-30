@@ -7,25 +7,24 @@
 
 class Window {
 
-    public:
-        Window(int width, int height, std::string title);
-        ~Window();
+public:
+    Window(int width, int height, std::string title);
+    ~Window();
 
-        void createWindowSurface(VkInstance instance, VkSurfaceKHR* surface);
-        bool shouldClose() { return glfwWindowShouldClose(window); }
-        void getFramebufferSize(int& width, int& height) { glfwGetFramebufferSize(window, &width, &height); }
+    void createWindowSurface(VkInstance instance, VkSurfaceKHR* surface);
+    bool shouldClose() { return glfwWindowShouldClose(window); }
+    void getFramebufferSize(int& width, int& height) { glfwGetFramebufferSize(window, &width, &height); }
 
-        bool hasBeenResized() { return resized; }
-        void resizeHandled() { resized = false; }
+    bool hasBeenResized() { return resized; }
+    void resizeHandled() { resized = false; }
 
-        void waitMinimized();
+    void waitMinimized();
 
-    private:
+private:
+    static void framebufferResizeCallback(GLFWwindow* window, int width, int height);
 
-        static void framebufferResizeCallback(GLFWwindow* window, int width, int height);
-
-        GLFWwindow *window;
-        bool resized = false;
+    GLFWwindow* window;
+    bool resized = false;
 };
 
 #endif // WINDOW_H_
